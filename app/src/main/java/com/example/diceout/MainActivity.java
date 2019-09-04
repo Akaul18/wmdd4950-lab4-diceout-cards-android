@@ -30,19 +30,9 @@ public class MainActivity extends AppCompatActivity {
     // Field to hold the score text
     TextView scoreText;
 
-    // Field to hold random number generator
-    Random rand;
-
-    // Fields to hold the die values
-    int die1;
-    int die2;
-    int die3;
-
     // ArrayList to hold all three dice ImageViews
-    ArrayList<ImageView> diceImageViews;
+    ArrayList<DieView> diceViews;
 
-    // ArrayList to hold all three die values
-    ArrayList<Integer> dice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,50 +59,27 @@ public class MainActivity extends AppCompatActivity {
         rollResult = (TextView) findViewById(R.id.rollResult);
         scoreText = (TextView) findViewById(R.id.scoreText);
 
-        // Initialize the random number generator
-        rand = new Random();
-
-        // Create ArrayList container for the dice values
-        dice = new ArrayList<Integer>();
+        diceViews = new ArrayList<>();
 
         // Access the dice ImageView widgets
-        ImageView die1image = (ImageView) findViewById(R.id.die1Image);
-        ImageView die2image = (ImageView) findViewById(R.id.die2Image);
-        ImageView die3image = (ImageView) findViewById(R.id.die3Image);
+        diceViews.add((DieView) findViewById(R.id.die1Image));
+        diceViews.add((DieView) findViewById(R.id.die2Image));
+        diceViews.add((DieView) findViewById(R.id.die3Image));
 
-        // Build ArrayList with dice ImageView instances
-        diceImageViews = new ArrayList<ImageView>();
-        diceImageViews.add(die1image);
-        diceImageViews.add(die2image);
-        diceImageViews.add(die3image);
     }
 
     public void rollDice(View v) {
-        // Roll dice
-        die1 = rand.nextInt(6)+1;
-        die2 = rand.nextInt(6)+1;
-        die3 = rand.nextInt(6)+1;
 
-        // Set dice values into an ArrayList
-        dice.clear();
-        dice.add(die1);
-        dice.add(die2);
-        dice.add(die3);
-
-        for (int dieOfSet = 0; dieOfSet < 3; dieOfSet++) {
-            String imageName = "die_" + dice.get(dieOfSet) + ".png";
-
-            try {
-                InputStream stream = getAssets().open(imageName);
-                Drawable d = Drawable.createFromStream(stream,null);
-                diceImageViews.get(dieOfSet).setImageDrawable(d);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        for (DieView d : diceViews) {
+            d.roll();
         }
 
         // Build message with the result
         String msg;
+
+        int die1 = diceViews.get(0).getValue();
+        int die2 = diceViews.get(1).getValue();
+        int die3 = diceViews.get(2).getValue();
 
         // Run the scoring logic to determine points scored for the roll
         if (die1 == die2 && die1 == die3) {
