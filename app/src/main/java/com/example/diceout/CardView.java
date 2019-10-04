@@ -51,7 +51,9 @@ public class CardView extends android.support.v7.widget.AppCompatImageView {
 
     public void roll() {
 
-        value = (int) (Math.random() * 51);
+        value = (int) (Math.random() * 13);
+
+
 
         for(int i=0;i<suits.length;i++){
             for(int j=0;j<ranks.length;j++){
@@ -59,7 +61,7 @@ public class CardView extends android.support.v7.widget.AppCompatImageView {
             }
         }
 
-        Collections.shuffle(cards);
+//        Collections.shuffle(cards);
 
         Log.d("card",""+cards);
 
