@@ -21,24 +21,24 @@
         android:text="Let's Play!"
         android:textColor="@android:color/white" />
 
-    <com.example.diceout.DieView
-        android:id="@+id/die1Image"
+    <com.example.diceout.CardView
+        android:id="@+id/card1Image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@id/rollResult"
         android:layout_marginTop="25dp"
         android:layout_alignParentLeft="true" />
 
-    <com.example.diceout.DieView
-        android:id="@+id/die2Image"
+    <com.example.diceout.CardView
+        android:id="@+id/card2Image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@id/rollResult"
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true" />
 
-    <com.example.diceout.DieView
-        android:id="@+id/die3Image"
+    <com.example.diceout.CardView
+        android:id="@+id/card3Image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_below="@id/rollResult"

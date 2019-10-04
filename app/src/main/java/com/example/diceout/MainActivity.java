@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     TextView scoreText;
 
     // ArrayList to hold all three dice ImageViews
-    ArrayList<DieView> diceViews;
+    ArrayList<CardView> cardViews;
 
 
     @Override
@@ -59,35 +59,35 @@ public class MainActivity extends AppCompatActivity {
         rollResult = (TextView) findViewById(R.id.rollResult);
         scoreText = (TextView) findViewById(R.id.scoreText);
 
-        diceViews = new ArrayList<>();
+        cardViews = new ArrayList<>();
 
         // Access the dice ImageView widgets
-        diceViews.add((DieView) findViewById(R.id.die1Image));
-        diceViews.add((DieView) findViewById(R.id.die2Image));
-        diceViews.add((DieView) findViewById(R.id.die3Image));
+        cardViews.add((CardView) findViewById(R.id.card1Image));
+        cardViews.add((CardView) findViewById(R.id.card2Image));
+        cardViews.add((CardView) findViewById(R.id.card3Image));
 
     }
 
     public void rollDice(View v) {
 
-        for (DieView d : diceViews) {
+        for (CardView d : cardViews) {
             d.roll();
         }
 
         // Build message with the result
         String msg;
 
-        int die1 = diceViews.get(0).getValue();
-        int die2 = diceViews.get(1).getValue();
-        int die3 = diceViews.get(2).getValue();
+        int card1 = cardViews.get(0).getValue();
+        int card2 = cardViews.get(1).getValue();
+        int card3 = cardViews.get(2).getValue();
 
         // Run the scoring logic to determine points scored for the roll
-        if (die1 == die2 && die1 == die3) {
+        if (card1 == card2 && card1 == card3) {
             // Triples
-            int scoreDelta = die1*100;
-            msg = "You rolled a triple " + die1 + "! You scored " + scoreDelta + " points!";
+            int scoreDelta = card1*100;
+            msg = "You rolled a triple " + card1 + "! You scored " + scoreDelta + " points!";
             score += scoreDelta;
-        } else if (die1 == die2 || die1 == die3 || die2 == die3) {
+        } else if (card1 == card2 || card1 == card3 || card2 == card3) {
             // Doubles
             msg = "You rolled doubles for 50 points!";
             score += 50;
